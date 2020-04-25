@@ -10,4 +10,4 @@ My diet record.
 ![skeletal_muscle_rate](image/skeletal_muscle_rate.png)
 ![body_age](image/body_age.png)
 ![basal_metabolic_rate](image/basal_metabolic_rate.png)
-![BMI](image/BMI.png)
+![BMI](image/bmi.png)
