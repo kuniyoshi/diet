@@ -1,4 +1,4 @@
-raw_data = data/raw.txt
+raw_data = data/raw.txt data/raw.to.2020-07.txt
 data = data/diet.tsv
 
 tsv:

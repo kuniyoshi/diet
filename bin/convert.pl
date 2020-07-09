@@ -45,9 +45,7 @@ while ( <> ) {
     die "Could not complete chunks: ", Data::Dumper->new( [ \@chunks ] )->Terse( 1 )->Dump( )
         unless @chunks == @HEADINGS;
 
-    my $date = to_be_date( $year, shift @chunks );
-
-    say join "\t", ( $date, @chunks );
+    say to_be_tsv( $year, @chunks );
 
     @chunks = ( );
 }
@@ -56,11 +54,19 @@ if ( @chunks ) {
     die "Could not complete chunks: ", Data::Dumper->new( [ @chunks ] )->Terse( 1 )->Dump( )
         unless @chunks == @HEADINGS;
 
-    say join "\t", @chunks;
+    say to_be_tsv( $year, @chunks );
+
     @chunks = ( );
 }
 
 exit;
+
+sub to_be_tsv {
+    my( $year, @chunks ) = @_;
+    my $date = to_be_date( $year, shift @chunks );
+
+    return join "\t", ( $date, @chunks );
+}
 
 sub to_be_date {
     my( $year, $month_day ) = @_;
