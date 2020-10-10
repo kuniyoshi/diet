@@ -29,3 +29,11 @@ dev.off()
 png("image/bmi.png")
 ggplot(diet, aes(x=date, y=BMI)) + geom_point() + geom_line()
 dev.off()
+
+png("image/body_fat_weight.png")
+ggplot(diet, aes(x=date, y=body_fat_percentage * weight / 100)) + geom_point() + geom_line()
+dev.off()
+
+png("image/skeletal_muscle_weight.png")
+ggplot(diet, aes(x=date, y=skeletal_muscle_rate * weight / 100)) + geom_point() + geom_line()
+dev.off()
