@@ -33,8 +33,10 @@ while ( <> ) {
     next
         if $line =~ m{\A \s* [#] }msx;
 
-    if ( $line =~ m{\w} ) {
-        push @chunks, $line;
+    my $fixed = fix( $line );
+
+    if ( $fixed =~ m{\w} ) {
+        push @chunks, $fixed;
 
         next;
     }
@@ -60,6 +62,16 @@ if ( @chunks ) {
 }
 
 exit;
+
+sub fix {
+    my $line = shift;
+
+    if ( $line =~ m{\A \d+ , \d+ \z}msx ) {
+        $line =~ s{,}{.};
+    }
+
+    return $line;
+}
 
 sub to_be_tsv {
     my( $year, @chunks ) = @_;
