@@ -13,3 +13,7 @@ My diet record.
 ![BMI](image/bmi.png)
 ![body_fat_weight](image/body_fat_weight.png)
 ![skeletal_muscle_weight](image/skeletal_muscle_rate.png)
+
+# MEMO
+
+2023-12-31 should be 2022-12-31.
