@@ -1,33 +1,55 @@
+library(zoo);
 library(ggplot2)
 diet <- read.delim("data/diet.tsv")
 diet$date <- as.Date(diet$date)
+diet$weight_ma7 <- rollmean(diet$weight, 7, fill = NA, align = "right")
+diet$body_fat_percentage_ma7 <- rollmean(diet$body_fat_percentage, 7, fill = NA, align = "right")
+diet$visceral_fat_ma7 <- rollmean(diet$visceral_fat, 7, fill = NA, align = "right")
+diet$skeletal_muscle_rate_ma7 <- rollmean(diet$skeletal_muscle_rate, 7, fill = NA, align = "right")
+diet$body_age_ma7 <- rollmean(diet$body_age, 7, fill = NA, align = "right")
+diet$basal_metabolic_rate_ma7 <- rollmean(diet$basal_metabolic_rate, 7, fill = NA, align = "right")
+diet$BMI_ma7 <- rollmean(diet$BMI, 7, fill = NA, align = "right")
 
 png("image/weight.png")
-ggplot(diet, aes(x=date, y=weight)) + geom_point() + geom_line()
+ggplot(diet, aes(x=date)) +
+  geom_line(aes(y=weight), color="gray") +
+  geom_line(aes(y=weight_ma7), color="blue")
 dev.off()
 
 png("image/body_fat_percentage.png")
-ggplot(diet, aes(x=date, y=body_fat_percentage)) + geom_point() + geom_line()
+ggplot(diet, aes(x=date)) +
+  geom_line(aes(y=body_fat_percentage), color="gray") +
+  geom_line(aes(y=body_fat_percentage_ma7), color="blue")
 dev.off()
 
 png("image/visceral_fat.png")
-ggplot(diet, aes(x=date, y=visceral_fat)) + geom_point() + geom_line()
+ggplot(diet, aes(x=date)) +
+  geom_line(aes(y=visceral_fat), color="gray") +
+  geom_line(aes(y=visceral_fat_ma7), color="blue")
 dev.off()
 
 png("image/skeletal_muscle_rate.png")
-ggplot(diet, aes(x=date, y=skeletal_muscle_rate)) + geom_point() + geom_line()
+ggplot(diet, aes(x=date)) +
+  geom_line(aes(y=skeletal_muscle_rate), color="gray") +
+  geom_line(aes(y=skeletal_muscle_rate_ma7), color="blue")
 dev.off()
 
 png("image/body_age.png")
-ggplot(diet, aes(x=date, y=body_age)) + geom_point() + geom_line()
+ggplot(diet, aes(x=date)) +
+  geom_line(aes(y=body_age), color="gray") +
+  geom_line(aes(y=body_age_ma7), color="blue")
 dev.off()
 
 png("image/basal_metabolic_rate.png")
-ggplot(diet, aes(x=date, y=basal_metabolic_rate)) + geom_point() + geom_line()
+ggplot(diet, aes(x=date)) +
+  geom_line(aes(y=basal_metabolic_rate), color="gray") +
+  geom_line(aes(y=basal_metabolic_rate_ma7), color="blue")
 dev.off()
 
 png("image/bmi.png")
-ggplot(diet, aes(x=date, y=BMI)) + geom_point() + geom_line()
+ggplot(diet, aes(x=date)) +
+  geom_line(aes(y=BMI), color="gray") +
+  geom_line(aes(y=BMI_ma7), color="blue")
 dev.off()
 
 png("image/body_fat_weight.png")
