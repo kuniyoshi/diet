@@ -52,10 +52,18 @@ ggplot(diet, aes(x=date)) +
   geom_line(aes(y=BMI_ma7), color="blue")
 dev.off()
 
+diet$body_fat_weight_ma7 <- rollmean(diet$body_fat_percentage * diet$weight / 100, 7, fill = NA, align = "right")
+
 png("image/body_fat_weight.png")
-ggplot(diet, aes(x=date, y=body_fat_percentage * weight / 100)) + geom_point() + geom_line()
+ggplot(diet, aes(x=date)) +
+  geom_line(aes(y=body_fat_percentage * weight / 100), color="gray") +
+  geom_line(aes(y=body_fat_weight_ma7), color="blue")
 dev.off()
 
+diet$skeletal_muscle_weight_ma7 <- rollmean(diet$skeletal_muscle_rate * diet$weight / 100, 7, fill = NA, align = "right")
+
 png("image/skeletal_muscle_weight.png")
-ggplot(diet, aes(x=date, y=skeletal_muscle_rate * weight / 100)) + geom_point() + geom_line()
+ggplot(diet, aes(x=date)) +
+  geom_line(aes(y=skeletal_muscle_rate * weight / 100), color="gray") +
+  geom_line(aes(y=skeletal_muscle_weight_ma7), color="blue")
 dev.off()

@@ -28,6 +28,9 @@ while ( <> ) {
 
     if ( $line =~ m{\A \s* [#] \s* year \s* (\d+) }msx ) {
         $year = $1;
+        say to_be_tsv( $year, @chunks )
+            if @chunks;
+        @chunks = ( );
     }
 
     next
