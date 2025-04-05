@@ -26,10 +26,10 @@ say join "\t", @HEADINGS;
 while ( <> ) {
     chomp( my $line = $_ );
 
-    if ( $line =~ m{\A \s* [#] \s* year \s* (\d+) }msx ) {
-        $year = $1;
+    if ( $line =~ m{\A \s* [#] \s* (?:year)? \s* (\d{4}) \z}msx ) {
         say to_be_tsv( $year, @chunks )
-            if @chunks;
+            if $year && @chunks;
+        $year = $1;
         @chunks = ( );
     }
 
