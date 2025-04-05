@@ -67,3 +67,63 @@ ggplot(diet, aes(x=date)) +
   geom_line(aes(y=skeletal_muscle_rate * weight / 100), color="gray") +
   geom_line(aes(y=skeletal_muscle_weight_ma7), color="blue")
 dev.off()
+
+# recent three months
+
+latest_date <- max(diet$date, na.rm = TRUE)
+three_months_ago <- latest_date - 90
+diet_recent <- subset(diet, date >= three_months_ago)
+
+png("image/weight_recent.png")
+ggplot(diet_recent, aes(x=date)) +
+  geom_line(aes(y=weight), color="gray") +
+  geom_line(aes(y=weight_ma7), color="blue")
+dev.off()
+
+png("image/body_fat_percentage_recent.png")
+ggplot(diet_recent, aes(x=date)) +
+  geom_line(aes(y=body_fat_percentage), color="gray") +
+  geom_line(aes(y=body_fat_percentage_ma7), color="blue")
+dev.off()
+
+png("image/visceral_fat_recent.png")
+ggplot(diet_recent, aes(x=date)) +
+  geom_line(aes(y=visceral_fat), color="gray") +
+  geom_line(aes(y=visceral_fat_ma7), color="blue")
+dev.off()
+
+png("image/skeletal_muscle_rate_recent.png")
+ggplot(diet_recent, aes(x=date)) +
+  geom_line(aes(y=skeletal_muscle_rate), color="gray") +
+  geom_line(aes(y=skeletal_muscle_rate_ma7), color="blue")
+dev.off()
+
+png("image/body_age_recent.png")
+ggplot(diet_recent, aes(x=date)) +
+  geom_line(aes(y=body_age), color="gray") +
+  geom_line(aes(y=body_age_ma7), color="blue")
+dev.off()
+
+png("image/basal_metabolic_rate_recent.png")
+ggplot(diet_recent, aes(x=date)) +
+  geom_line(aes(y=basal_metabolic_rate), color="gray") +
+  geom_line(aes(y=basal_metabolic_rate_ma7), color="blue")
+dev.off()
+
+png("image/bmi_recent.png")
+ggplot(diet_recent, aes(x=date)) +
+  geom_line(aes(y=BMI), color="gray") +
+  geom_line(aes(y=BMI_ma7), color="blue")
+dev.off()
+
+png("image/body_fat_weight_recent.png")
+ggplot(diet_recent, aes(x=date)) +
+  geom_line(aes(y=body_fat_percentage * weight / 100), color="gray") +
+  geom_line(aes(y=body_fat_weight_ma7), color="blue")
+dev.off()
+
+png("image/skeletal_muscle_weight_recent.png")
+ggplot(diet_recent, aes(x=date)) +
+  geom_line(aes(y=skeletal_muscle_rate * weight / 100), color="gray") +
+  geom_line(aes(y=skeletal_muscle_weight_ma7), color="blue")
+dev.off()
